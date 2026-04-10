@@ -6,7 +6,7 @@ import json
 import re
 
 # Load prompts
-with open("prompts.md", "r") as f:
+with open("prompts_revision_2.md", "r") as f:
     prompts_content = f.read()
 
 # Extract system prompt (between first ```...``` block)
@@ -88,4 +88,4 @@ def save_csv(results: list, path: str = "eval_results.csv"):
 
 if __name__ == "__main__":
     results = run_eval()
-    save_csv(results)
+    save_csv(results, "eval_results_revision_2.csv")

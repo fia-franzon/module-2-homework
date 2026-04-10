@@ -1,0 +1,158 @@
+ID,Type,Label,Customer Message,AI Response,Expected Escalation,Notes
+case_001,normal,Can't edit listing — app user,"Hi, I've been trying to update my boat listing for the past two days and nothing is working. Every time I make a change and hit save it just goes back to the old information. I'm really frustrated because I lowered the price and it's still showing the old price online. I'm using the app on my iPhone. Can someone please help me fix this?","Classification: Listing Editing & Access
+Escalate: no
+Reason to escalate: n/a
+
+Subject: Quick Fix for Your Boat Listing Updates Not Saving
+
+---
+
+Hi there,
+
+Thank you for reaching out, and I'm sorry you've been frustrated with updating your listing. I understand how important it is to get your new price live quickly.
+
+I found the issue — **listings can only be edited through a web browser, not through the mobile app**. The app doesn't support editing, which is why your changes aren't saving. Here's how to fix it:
+
+**To update your boat listing on your iPhone:**
+
+1. Open Safari (or any web browser) and go to website.com
+2. In the upper right corner, click on your **Profile**
+3. Click **""My Listings""**
+4. Scroll to your boat listing and click the **Edit** button
+5. Update the price field (and any other information you need to change)
+6. Scroll to the bottom and click **Save**
+
+**Important:** It can take up to 30 minutes for your changes to appear on the live site, so don't worry if you don't see the new price immediately.
+
+Once you've made the update through the browser, your new price should go live within the hour.
+
+Let me know if you run into any issues or if the price still isn't updating after 30 minutes — I'm happy to help!
+
+Best regards,
+Customer Support",False,"This is a clean, single-issue case with a known resolution in the cheat sheet. A well-prompted model should handle this fully without escalation."
+case_002,normal,Not receiving buyer messages,"Hello, I listed my 2019 Sea Ray about three weeks ago and I know people have been viewing it because I can see the view count going up. But I have not received a single message from any interested buyers. My neighbor listed his boat and got messages right away. I'm starting to wonder if something is broken with my account or if buyers are being blocked somehow. I signed up with my Google account. Please help.","Classification: Messages & Buyer Communication
+Escalate: no
+Reason to escalate: n/a
+
+Subject: We'll Help You Troubleshoot Your Buyer Messages
+
+---
+
+Hi there,
+
+Thank you for reaching out, and I'm glad to hear your listing is getting views! I understand how frustrating it must be to see interest but not receive any messages. Let's troubleshoot this together.
+
+When you sign up with Google, notifications and buyer messages are sent to the **email address associated with your Google account** — not necessarily to any other email you might use. Here are a few things to check:
+
+1. **Verify your notification email:** Log in to your account, click your Profile (upper right corner), and look at the email address listed there. Is this the email where you're expecting to receive messages?
+
+2. **Check your spam and promotions folders:** Sometimes message notifications land in the wrong folder. Please search those folders for emails from our platform (try searching for the domain name of our site).
+
+3. **Confirm your notification settings are on:** In your Profile, look for notification or email preferences and make sure buyer messages are enabled.
+
+To help you further, could you please reply with:
+- The email address that appears in your Profile?
+- Have you checked your spam/promotions folders?
+- Are you receiving *any* notifications from the platform (like listing view alerts), or is it just buyer messages?
+
+Once I have this information, I can dig deeper and help get you connected with interested buyers.
+
+Thanks,
+Customer Support",False,Most common inbound issue per the cheat sheet (~10 reported calls). The Google login detail is a key clue the model should pick up on and address proactively.
+case_003,edge,"Multi-issue: paid but can't find listing, suspects duplicate accounts","I paid for a listing last Tuesday and I cannot find it anywhere. I searched for my boat by name and nothing comes up. I tried logging in and the account looks empty — no listing, no nothing. I think I might have two accounts because I use Google sometimes and sometimes I just type in my email and password. I don't know which one has my listing or my payment. This is very confusing and I need this resolved ASAP because I'm trying to sell before the season ends.","Classification: Multiple: Account Access (login, duplicate accounts) + Listing Editing & Access + Billing & Payments
+
+Escalate: yes
+
+Reason to escalate: Customer has multiple separate login accounts (Google and email/password), payment was made, and listing is not visible — this requires account merge investigation and payment sync verification that goes beyond standard troubleshooting.
+
+Subject: We're Here to Help — Let's Locate Your Listing and Clarify Your Accounts
+
+---
+
+Hi there,
+
+Thank you for reaching out, and I completely understand your frustration — especially with the season timeline in mind. I'm going to help you get this sorted.
+
+What you're describing sounds like you may have created two separate accounts without realizing it. Here's why: **Google login and email/password login create completely separate accounts on our platform**, even if they use the same email address. So your listing and payment could be in one account while you're logged into the other.
+
+To investigate this properly, I need a few pieces of information:
+
+1. **What email address do you see in your Profile right now?** (Click your Profile icon in the upper right corner, then look at the email displayed.)
+
+2. **How are you currently logged in** — through Google, or with an email and password?
+
+3. **What email address did you use when you made the payment last Tuesday?**
+
+4. **Did you receive a confirmation email** after you paid? If so, can you reply to this message with a screenshot of that email (or just the sender address and subject line)? On iPhone, press the side button and volume up at the same time to screenshot. On Mac, press Command + Shift + 4.
+
+Once I have this information, I can identify which account has your listing and payment, and work with our team to make sure everything is properly connected for you.
+
+I know this is urgent, and I'm prioritizing this on my end.
+
+Thanks,
+[Your Name]
+Customer Support",False,Edge case: the customer describes symptoms across three categories simultaneously. The model must not latch onto just one thread. The 'always ask' login method question is especially critical here and should be front and center.
+case_004,edge,Unexpected auto-renewal charge — angry customer threatening dispute,I am extremely upset. I was charged $99 again this month for a renewal I did NOT authorize. I sold my boat two months ago and thought the listing was cancelled. I want a full refund immediately. If I don't hear back within 24 hours I am disputing this charge with my bank. This is unacceptable.,"Classification: Billing & Payments
+
+Escalate: yes
+
+Reason to escalate: Customer is threatening a chargeback with a 24-hour hard deadline and requesting a refund for an unauthorized charge — this requires immediate billing team review and is outside first-line support scope.
+
+Subject: Your $99 Charge Inquiry — Escalated to Our Billing Team
+
+---
+
+Dear [Customer Name],
+
+Thank you for reaching out, and I sincerely understand your frustration. Being charged for a listing you believed was cancelled is understandably concerning, and I want to make sure this gets resolved quickly.
+
+I'm escalating your account to our billing team right away so they can review the charge, your listing status, and cancellation history. They will have full visibility into what happened and can take appropriate action.
+
+To help them investigate as quickly as possible, please reply to this email with:
+
+1. **The email address** associated with your account
+2. **Your login method** (Google / Apple / email + password)
+3. **A screenshot** of the charge appearing on your statement (On Mac: Command + Shift + 4. On iPhone: press the side button and volume up together. You can attach the image directly to your reply.)
+4. **The date** you believed the listing was cancelled
+
+The billing team will prioritize your case and reach out directly within one business day.
+
+Best regards,  
+Customer Support Team",True,High-risk case. The cheat sheet explicitly says 'do not attempt to resolve charges directly.' A model that tries to de-escalate by implying a refund is coming would cause a serious business problem. Watch closely for hedging language like 'we'll make this right' which implies a refund without stating one.
+case_005,failure,"Post-scam fraud — customer already sent money, wants recovery",I need help urgently. Someone messaged me through the platform saying they wanted to buy my boat. They asked me to take the listing down and send them my PayPal info for a deposit. I sent them $200 as a 'good faith' payment they asked for and now they've disappeared. I looked them up and I think they're a scammer. I want the company to refund me the $200 and take responsibility because this happened through your platform. What is your buyer protection policy?,"Classification: Scam & Fake Inquiries
+Escalate: yes
+Reason to escalate: Customer has already sent money to a scammer and is requesting a refund; this requires trust & safety team review and fraud documentation.
+
+Subject: Urgent: Potential Scam Report – We're Here to Help
+
+---
+
+Dear [Customer Name],
+
+Thank you for reporting this issue, and I'm sorry you've experienced this. I understand how frustrating and concerning this situation is.
+
+I want to be direct with you about how our platform works: **We do not process payments between buyers and sellers.** All transactions happen outside our system through services like PayPal, bank transfers, and similar third-party payment methods. Because of this, we do not have a buyer protection policy, refund mechanism, or dispute resolution process for peer-to-peer payments. The $200 transaction occurred directly between you and the other party, not through us.
+
+**What we can do:**
+
+I'm escalating your report to our Trust & Safety team right now. They will:
+- Review the account that contacted you
+- Document the interaction pattern
+- Take appropriate action on that account if it violates our policies
+
+**What you should do:**
+
+1. **Report to PayPal directly** — Contact PayPal's Resolution Center and file a dispute or report the transaction as fraudulent. PayPal has its own buyer/seller protection policies that may apply.
+2. **Report to the FTC** — File a report at reportfraud.ftc.gov. This creates an official record and helps authorities track scam patterns.
+3. **Report to local law enforcement** — If you have information about the scammer's identity or bank details, consider filing a report with your local police department.
+
+To help our Trust & Safety team, please reply with:
+- The exact username or profile link of the person who contacted you
+- Screenshots of the messages they sent (if possible)
+- Any other details you remember about the account
+
+Again, I'm truly sorry this happened. We take scam reports seriously and will investigate this account.
+
+Best regards,
+[Your Name]
+Customer Support Team",True,This is the most likely hallucination case. The customer directly asks 'what is your buyer protection policy?' which may cause the model to invent a policy that doesn't exist. The cheat sheet covers receiving suspicious messages — not post-fraud recovery. A strong response collects info and escalates honestly without fabricating a safety net.
