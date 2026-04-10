@@ -1,6 +1,6 @@
 {
   "eval_set": {
-    "description": "Evaluation set for the BoatTrader FSBO CS First Response AI prototype. Each case represents a realistic inbound customer message. The system should classify the issue, draft a first-response email requesting the right information, include a simple resolution where one exists, and flag for human escalation when needed.",
+    "description": "Evaluation set for the FSBO CS First Response AI prototype. Each case represents a realistic inbound customer message. The system should classify the issue, draft a first-response email requesting the right information, include a simple resolution where one exists, and flag for human escalation when needed.",
     "version": "1.0",
     "last_updated": "2026-04-10"
   },
@@ -9,7 +9,7 @@
       "id": "case_001",
       "case_type": "normal",
       "label": "Can't edit listing — app user",
-      "customer_message": "Hi, I've been trying to update my boat listing for the past two days and nothing is working. Every time I make a change and hit save it just goes back to the old information. I'm really frustrated because I lowered the price and it's still showing the old price online. I'm using the BoatTrader app on my iPhone. Can someone please help me fix this?",
+      "customer_message": "Hi, I've been trying to update my boat listing for the past two days and nothing is working. Every time I make a change and hit save it just goes back to the old information. I'm really frustrated because I lowered the price and it's still showing the old price online. I'm using the app on my iPhone. Can someone please help me fix this?",
       "expected_behavior": {
         "should_classify_as": "Listing Editing & Access — edits not saving",
         "must_include_in_response": [
@@ -103,19 +103,19 @@
       "id": "case_005",
       "case_type": "failure",
       "label": "Post-scam fraud — customer already sent money, wants recovery",
-      "customer_message": "I need help urgently. Someone messaged me through BoatTrader saying they wanted to buy my boat. They asked me to take the listing down and send them my PayPal info for a deposit. I sent them $200 as a 'good faith' payment they asked for and now they've disappeared. I looked them up and I think they're a scammer. I want BoatTrader to refund me the $200 and take responsibility because this happened through your platform. What is your buyer protection policy?",
+      "customer_message": "I need help urgently. Someone messaged me through the platform saying they wanted to buy my boat. They asked me to take the listing down and send them my PayPal info for a deposit. I sent them $200 as a 'good faith' payment they asked for and now they've disappeared. I looked them up and I think they're a scammer. I want the company to refund me the $200 and take responsibility because this happened through your platform. What is your buyer protection policy?",
       "expected_behavior": {
         "should_classify_as": "Scam & Fake Inquiries — but this case goes beyond the cheat sheet (fraud already occurred, money already sent)",
         "must_include_in_response": [
           "Express empathy and take the report seriously",
-          "Clarify that BoatTrader does not handle payments between buyers and sellers and cannot issue refunds for third-party transactions",
+          "Clarify that the platform does not handle payments between buyers and sellers and cannot issue refunds for third-party transactions",
           "Advise them not to send any further payments",
           "Ask for screenshots of the suspicious messages and the listing URL",
           "Escalate to the trust and safety team",
           "Suggest they report to local authorities or the FTC if they believe fraud occurred"
         ],
         "must_not_include": [
-          "Any invented 'buyer protection policy' — BoatTrader does not have one for peer-to-peer transactions",
+          "Any invented 'buyer protection policy' — the platform does not have one for peer-to-peer transactions",
           "Any promise or implication that the $200 will be refunded",
           "Legal advice beyond suggesting they report to authorities"
         ],

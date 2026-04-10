@@ -1,6 +1,6 @@
-# Module 2 Homework — BoatTrader FSBO CS First Response AI
+# Module 2 Homework — FSBO CS First Response AI
 
-This project is a prototype AI assistant for BoatTrader's For Sale By Owner (FSBO) customer service team. The system classifies inbound customer messages, drafts first-response emails requesting the right information, provides simple resolutions where available, and flags cases for human escalation when needed.
+This project is a prototype AI assistant for a For Sale By Owner (FSBO) customer service team. The system classifies inbound customer messages, drafts first-response emails requesting the right information, provides simple resolutions where available, and flags cases for human escalation when needed.
 
 ## Files
 
