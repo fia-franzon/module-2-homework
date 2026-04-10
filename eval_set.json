@@ -1,0 +1,127 @@
+{
+  "eval_set": {
+    "description": "Evaluation set for the BoatTrader FSBO CS First Response AI prototype. Each case represents a realistic inbound customer message. The system should classify the issue, draft a first-response email requesting the right information, include a simple resolution where one exists, and flag for human escalation when needed.",
+    "version": "1.0",
+    "last_updated": "2026-04-10"
+  },
+  "cases": [
+    {
+      "id": "case_001",
+      "case_type": "normal",
+      "label": "Can't edit listing — app user",
+      "customer_message": "Hi, I've been trying to update my boat listing for the past two days and nothing is working. Every time I make a change and hit save it just goes back to the old information. I'm really frustrated because I lowered the price and it's still showing the old price online. I'm using the BoatTrader app on my iPhone. Can someone please help me fix this?",
+      "expected_behavior": {
+        "should_classify_as": "Listing Editing & Access — edits not saving",
+        "must_include_in_response": [
+          "Acknowledge the frustration and confirm you're looking into it",
+          "Ask whether they are on the app or a browser",
+          "Since they mentioned iPhone app, include the resolution: listings can only be edited via web browser (Safari on iPhone), not the app",
+          "Ask them to confirm the email address shown in their Profile",
+          "Request a screenshot of what they see"
+        ],
+        "must_not_include": [
+          "Promises that the price will be updated immediately",
+          "Any implication that this is a billing or account issue"
+        ],
+        "escalate": false,
+        "notes": "This is a clean, single-issue case with a known resolution in the cheat sheet. A well-prompted model should handle this fully without escalation."
+      }
+    },
+    {
+      "id": "case_002",
+      "case_type": "normal",
+      "label": "Not receiving buyer messages",
+      "customer_message": "Hello, I listed my 2019 Sea Ray about three weeks ago and I know people have been viewing it because I can see the view count going up. But I have not received a single message from any interested buyers. My neighbor listed his boat and got messages right away. I'm starting to wonder if something is broken with my account or if buyers are being blocked somehow. I signed up with my Google account. Please help.",
+      "expected_behavior": {
+        "should_classify_as": "Messages & Buyer Communication — not receiving buyer messages",
+        "must_include_in_response": [
+          "Acknowledge their concern and validate that this is worth investigating",
+          "Ask if they are checking messages via the app or browser",
+          "Since they mentioned Google login, flag that email notifications go to their Google-associated email — ask them to confirm which email appears in their Profile",
+          "Ask them to check that inbox including spam/promotions folders",
+          "Ask for a screenshot of their inbox if it appears empty",
+          "Note that buyer phone numbers are not visible in messages for security reasons"
+        ],
+        "must_not_include": [
+          "Any guarantee that buyers have tried to contact them",
+          "Suggestions to change their login method"
+        ],
+        "escalate": false,
+        "notes": "Most common inbound issue per the cheat sheet (~10 reported calls). The Google login detail is a key clue the model should pick up on and address proactively."
+      }
+    },
+    {
+      "id": "case_003",
+      "case_type": "edge",
+      "label": "Multi-issue: paid but can't find listing, suspects duplicate accounts",
+      "customer_message": "I paid for a listing last Tuesday and I cannot find it anywhere. I searched for my boat by name and nothing comes up. I tried logging in and the account looks empty — no listing, no nothing. I think I might have two accounts because I use Google sometimes and sometimes I just type in my email and password. I don't know which one has my listing or my payment. This is very confusing and I need this resolved ASAP because I'm trying to sell before the season ends.",
+      "expected_behavior": {
+        "should_classify_as": "Multiple: Account Access After Payment + Listing Visibility + possible duplicate account",
+        "must_include_in_response": [
+          "Acknowledge urgency without over-promising a timeline",
+          "Ask them to try logging in with all three methods (Google, Apple, email/password) and note which email appears in the Profile for each",
+          "Explain that Google and email/password logins create separate accounts — this is likely the root cause",
+          "Note that after payment, syncing can take up to an hour — ask when exactly they paid",
+          "Ask for the email address used at time of purchase",
+          "Request a screenshot of what they see when logged in",
+          "Ask for the listing URL or any confirmation email they received at time of purchase"
+        ],
+        "must_not_include": [
+          "A promise to merge accounts (this is an escalation task)",
+          "Confirmation that their payment went through"
+        ],
+        "escalate": false,
+        "notes": "Edge case: the customer describes symptoms across three categories simultaneously. The model must not latch onto just one thread. The 'always ask' login method question is especially critical here and should be front and center."
+      }
+    },
+    {
+      "id": "case_004",
+      "case_type": "edge",
+      "label": "Unexpected auto-renewal charge — angry customer threatening dispute",
+      "customer_message": "I am extremely upset. I was charged $99 again this month for a renewal I did NOT authorize. I sold my boat two months ago and thought the listing was cancelled. I want a full refund immediately. If I don't hear back within 24 hours I am disputing this charge with my bank. This is unacceptable.",
+      "expected_behavior": {
+        "should_classify_as": "Billing — auto-renewal / unexpected charge",
+        "must_include_in_response": [
+          "Acknowledge the frustration with empathy — do not be defensive",
+          "Confirm that you are escalating this to the right team who can review the charge",
+          "Ask for the email address on the account",
+          "Ask how they log in (Google, Apple, or email/password)",
+          "Ask for a screenshot of the charge (receipt email or bank statement) and the date(s)",
+          "Ask whether they recently relisted or reactivated a listing",
+          "Inform them that the billing team will follow up"
+        ],
+        "must_not_include": [
+          "Any promise or implication that a refund will be issued",
+          "Any attempt to resolve the charge directly",
+          "Language that admits fault on behalf of the company"
+        ],
+        "escalate": true,
+        "notes": "High-risk case. The cheat sheet explicitly says 'do not attempt to resolve charges directly.' A model that tries to de-escalate by implying a refund is coming would cause a serious business problem. Watch closely for hedging language like 'we'll make this right' which implies a refund without stating one."
+      }
+    },
+    {
+      "id": "case_005",
+      "case_type": "failure",
+      "label": "Post-scam fraud — customer already sent money, wants recovery",
+      "customer_message": "I need help urgently. Someone messaged me through BoatTrader saying they wanted to buy my boat. They asked me to take the listing down and send them my PayPal info for a deposit. I sent them $200 as a 'good faith' payment they asked for and now they've disappeared. I looked them up and I think they're a scammer. I want BoatTrader to refund me the $200 and take responsibility because this happened through your platform. What is your buyer protection policy?",
+      "expected_behavior": {
+        "should_classify_as": "Scam & Fake Inquiries — but this case goes beyond the cheat sheet (fraud already occurred, money already sent)",
+        "must_include_in_response": [
+          "Express empathy and take the report seriously",
+          "Clarify that BoatTrader does not handle payments between buyers and sellers and cannot issue refunds for third-party transactions",
+          "Advise them not to send any further payments",
+          "Ask for screenshots of the suspicious messages and the listing URL",
+          "Escalate to the trust and safety team",
+          "Suggest they report to local authorities or the FTC if they believe fraud occurred"
+        ],
+        "must_not_include": [
+          "Any invented 'buyer protection policy' — BoatTrader does not have one for peer-to-peer transactions",
+          "Any promise or implication that the $200 will be refunded",
+          "Legal advice beyond suggesting they report to authorities"
+        ],
+        "escalate": true,
+        "notes": "This is the most likely hallucination case. The customer directly asks 'what is your buyer protection policy?' which may cause the model to invent a policy that doesn't exist. The cheat sheet covers receiving suspicious messages — not post-fraud recovery. A strong response collects info and escalates honestly without fabricating a safety net."
+      }
+    }
+  ]
+}
