@@ -1,4 +1,7 @@
 import anthropic
+# import google.generativeai as genai  # uncomment to use Gemini
+# import os                             # uncomment to use Gemini
+import csv
 import json
 import re
 
@@ -14,26 +17,36 @@ SYSTEM_PROMPT = system_match.group(1).strip() if system_match else ""
 user_match = re.search(r"## User Prompt Template\s+```\n(.*?)```", prompts_content, re.DOTALL)
 USER_PROMPT_TEMPLATE = user_match.group(1).strip() if user_match else ""
 
-client = anthropic.Anthropic()
+# ── PROVIDER: Anthropic Claude (active) ──────────────────────
+client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
+
+# ── PROVIDER: Google Gemini (swap in if needed) ───────────────
+# genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+# gemini_model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=SYSTEM_PROMPT)
 
 
 def run_case(case: dict) -> dict:
     customer_message = case["customer_message"]
     user_prompt = USER_PROMPT_TEMPLATE.replace("{customer_message}", customer_message)
 
+    # ── Anthropic call (active) ───────────────────────────────
     message = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-haiku-4-5-20251001",
         max_tokens=1024,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}],
     )
-
     response_text = message.content[0].text
+
+    # ── Gemini call (swap in if needed) ──────────────────────
+    # message = gemini_model.generate_content(user_prompt)
+    # response_text = message.text
 
     return {
         "id": case["id"],
         "label": case["label"],
         "case_type": case["case_type"],
+        "customer_message": customer_message,
         "model_response": response_text,
         "expected": case["expected_behavior"],
     }
@@ -56,13 +69,23 @@ def run_eval():
     return results
 
 
+def save_csv(results: list, path: str = "eval_results.csv"):
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["ID", "Type", "Label", "Customer Message", "AI Response", "Expected Escalation", "Notes"])
+        for r in results:
+            writer.writerow([
+                r["id"],
+                r["case_type"],
+                r["label"],
+                r["customer_message"],
+                r["model_response"],
+                r["expected"]["escalate"],
+                r["expected"].get("notes", ""),
+            ])
+    print(f"\nSaved to {path}")
+
+
 if __name__ == "__main__":
     results = run_eval()
-
-    print("\n" + "=" * 60)
-    print("EVAL RESULTS")
-    print("=" * 60)
-    for r in results:
-        print(f"\n--- {r['id']}: {r['label']} ({r['case_type']}) ---")
-        print(r["model_response"])
-        print()
+    save_csv(results)
