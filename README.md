@@ -19,6 +19,10 @@ export ANTHROPIC_API_KEY=your_key_here
 python app.py
 ```
 
+## Demo
+
+[![Module 2 Homework Demo](https://img.youtube.com/vi/sTuv53mU1eI/0.jpg)](https://youtu.be/sTuv53mU1eI)
+
 ## Eval Cases
 
 The eval set covers:
